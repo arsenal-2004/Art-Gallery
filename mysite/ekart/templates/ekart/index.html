@@ -1,0 +1,20 @@
+{% if painting_list %}
+	
+	<form action="{% url 'ekart:search' %}" method="post">
+	{% csrf_token %}
+	<input type="text" name="t" id="searchbox" placeholder="Search">
+	<input type="submit" value="Search">
+	</form>
+	{% if error_message %}
+		<p><strong>{{ error_message }}</strong></p>
+	{% endif %}
+	<h1 style="text-align: center;">Paintings Available</h1>
+	{% for painting in painting_list %}
+		<ul style="list-style-type: none;">
+			<li style="text-align: center; font-size: 25px;"><a href="{% url 'ekart:detail' painting.id %}">{{ painting.name }}</a></li>
+			<div><img src="{{ painting.image.url }}" alt="{{ painting.name }}" style="height:300px; display:block; margin: auto;"/></div>
+		</ul>
+	{% endfor %}
+{% else %}
+	<h1>No paintings available</h1>
+{% endif %}

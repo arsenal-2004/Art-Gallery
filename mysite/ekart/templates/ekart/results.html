@@ -1,0 +1,9 @@
+<h1 style="text-align: center;">Paintings matching your search</h1>
+
+{% for painting in painting_list %}
+	
+	<ul style="list-style-type: none;">
+		<li style="text-align: center; font-size: 25px;"><a href="{% url 'ekart:detail' painting.id %}">{{ painting.name }}</a></li>
+		<img src="{{ painting.image.url }}" alt="{{ painting.name }}" style="height:300px; display: block; margin: auto;" />
+	</ul>
+{% endfor %}
